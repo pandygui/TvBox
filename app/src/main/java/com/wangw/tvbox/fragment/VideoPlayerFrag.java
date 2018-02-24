@@ -57,7 +57,7 @@ public class VideoPlayerFrag extends VideoSupportFragment {
 //                VideoPlayerFrag.this.onVideoSizeChanged(width,height);
 //            }
 //        });
-        mTransportControlGlue.setVideoUrl(url);
+        mTransportControlGlue.setVideoUrl(url);//("http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=C0EAFBB7667154C8850804E7D2F91922&file=%2Fc1%2F2018%2F02%2F13_0%2FC0EAFBB7667154C8850804E7D2F91922_20180213_1_1_840.mp4");
     }
 
     @Override

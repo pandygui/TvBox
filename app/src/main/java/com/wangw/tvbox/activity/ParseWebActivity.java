@@ -48,6 +48,14 @@ public class ParseWebActivity extends BaseActivity {
         st.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
 
         webView.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Log.d(TAG, "shouldOverrideUrlLoading: "+request.getUrl());
+
+                return super.shouldOverrideUrlLoading(view, request);
+            }
+
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 Log.d(TAG, "shouldInterceptRequest: "+request.getUrl());
@@ -75,7 +83,7 @@ public class ParseWebActivity extends BaseActivity {
             }
         });
 
-        webView.loadUrl(url);
+        webView.loadUrl("http://www.82190555.com/video.php?url="+url);
     }
 
     private void startPlay(String url) {
