@@ -3,4 +3,13 @@
 
     <style name="AppTheme" parent="@style/Theme.Leanback">
     </style>
+
+    <style name="style_dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:colorBackground">@color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:padding">0dp</item>
+    </style>
 </resources>
