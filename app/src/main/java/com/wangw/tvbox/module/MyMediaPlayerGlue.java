@@ -16,6 +16,7 @@ import android.support.v17.leanback.widget.PlaybackControlsRow;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.Row;
 import android.support.v17.leanback.widget.RowPresenter;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
@@ -421,6 +422,16 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
                 }
             }
         });
+        mPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Log.e(TAG, "onError: what="+what+" , extra="+extra);
+                if (mMyPlayerCallback != null){
+                    mMyPlayerCallback.onError(mp,what,extra);
+                }
+                return false;
+            }
+        });
 
         mPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
             @Override
@@ -511,6 +522,7 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
 
     public interface MyPlayerCallback {
         void onVideoSizeChanged(MediaPlayer mp, int width, int height);
+        boolean onError(MediaPlayer mp, int what, int extra);
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -41,11 +42,24 @@ public class WebActivity extends TvMouseActivity {
         findViewById(R.id.btn_play).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.btn_play).setEnabled(false);
-                ParseWebActivity.jumpTo(WebActivity.this,mWebView.getUrl());
-                findViewById(R.id.btn_play).setEnabled(true);
+                jumpVideo();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()){
+            mWebView.goBack();
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    private void jumpVideo() {
+        findViewById(R.id.btn_play).setEnabled(false);
+        ParseWebActivity.jumpTo(WebActivity.this,mWebView.getUrl());
+        findViewById(R.id.btn_play).setEnabled(true);
     }
 
     private void initWebView() {
@@ -53,10 +67,28 @@ public class WebActivity extends TvMouseActivity {
         st.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         st.setJavaScriptEnabled(true);
 
-        mWebView.setWebChromeClient(new WebChromeClient());
-        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebChromeClient(new WebChromeClient(){});
+        mWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+                return super.shouldOverrideKeyEvent(view, event);
+            }
+
+            @Override
+            public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
+                super.onUnhandledKeyEvent(view, event);
+            }
+        });
 
         mWebView.loadUrl("https://www.mgtv.com/");
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_MENU && event.getAction() == KeyEvent.ACTION_UP){
+            jumpVideo();
+        }
+        return super.dispatchKeyEvent(event);
     }
 
     @Override

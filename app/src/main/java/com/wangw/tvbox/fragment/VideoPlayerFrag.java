@@ -1,12 +1,18 @@
 package com.wangw.tvbox.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v17.leanback.app.VideoSupportFragment;
 import android.support.v17.leanback.app.VideoSupportFragmentGlueHost;
 import android.support.v17.leanback.media.MediaPlayerGlue;
 import android.support.v17.leanback.media.PlaybackGlue;
+import android.util.Log;
 
 import com.wangw.tvbox.module.MyMediaPlayerGlue;
+import com.wangw.tvbox.utils.ToastUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * Created by wangw on 2018/2/24.
@@ -15,6 +21,7 @@ import com.wangw.tvbox.module.MyMediaPlayerGlue;
 public class VideoPlayerFrag extends VideoSupportFragment {
 
     private static final String TAG = "VideoPlayerFrag";
+    private String mPlayUrl;
 
     public static VideoPlayerFrag newInstance(String url) {
 
@@ -40,7 +47,7 @@ public class VideoPlayerFrag extends VideoSupportFragment {
         mTransportControlGlue = new MyMediaPlayerGlue(getActivity());
         mTransportControlGlue.setMode(MediaPlayerGlue.NO_REPEAT);
         mTransportControlGlue.setHost(glueHost);
-        mTransportControlGlue.setTitle("");
+        mTransportControlGlue.setTitle("TvBox");
         mTransportControlGlue.setArtist(url);
         mTransportControlGlue.addPlayerCallback(
                 new PlaybackGlue.PlayerCallback() {
@@ -51,13 +58,35 @@ public class VideoPlayerFrag extends VideoSupportFragment {
                         }
                     }
                 });
-//        mTransportControlGlue.setMyPlayerCallback(new MyMediaPlayerGlue.MyPlayerCallback() {
-//            @Override
-//            public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-//                VideoPlayerFrag.this.onVideoSizeChanged(width,height);
-//            }
-//        });
-        mTransportControlGlue.setVideoUrl(url);//("http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=C0EAFBB7667154C8850804E7D2F91922&file=%2Fc1%2F2018%2F02%2F13_0%2FC0EAFBB7667154C8850804E7D2F91922_20180213_1_1_840.mp4");
+        mTransportControlGlue.setMyPlayerCallback(new MyMediaPlayerGlue.MyPlayerCallback() {
+            @Override
+            public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                VideoPlayerFrag.this.onVideoSizeChanged(width,height);
+            }
+
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                if (extra == MediaPlayer.MEDIA_ERROR_IO && !mPlayUrl.startsWith("https")){
+                    startPlay(mPlayUrl.replace("http","https"));
+                }else {
+                    ToastUtils.showToast("播放失败: waht = "+what+" , extra="+extra);
+                }
+                return true;
+            }
+        });
+        try {
+            String decode = URLDecoder.decode(url, "UTF-8");
+            startPlay(decode);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void startPlay(String url) {
+        this.mPlayUrl = url;
+        Log.e(TAG, "startPlay: "+url);
+        mTransportControlGlue.setVideoUrl(mPlayUrl);
     }
 
     @Override
