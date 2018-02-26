@@ -48,7 +48,7 @@ public class VideoPlayerFrag extends VideoSupportFragment {
         mTransportControlGlue.setMode(MediaPlayerGlue.NO_REPEAT);
         mTransportControlGlue.setHost(glueHost);
         mTransportControlGlue.setTitle("TvBox");
-        mTransportControlGlue.setArtist(url);
+
         mTransportControlGlue.addPlayerCallback(
                 new PlaybackGlue.PlayerCallback() {
                     @Override
@@ -86,6 +86,7 @@ public class VideoPlayerFrag extends VideoSupportFragment {
     private void startPlay(String url) {
         this.mPlayUrl = url;
         Log.e(TAG, "startPlay: "+url);
+        mTransportControlGlue.setArtist(url);
         mTransportControlGlue.setVideoUrl(mPlayUrl);
     }
 

@@ -45,7 +45,7 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
     private Runnable mRunnable;
     private Handler mHandler = new Handler();
     private boolean mInitialized = false; // true when the MediaPlayer is prepared/initialized
-    private Action mSelectedAction; // the action which is currently selected by the user
+//    private Action mSelectedAction; // the action which is currently selected by the user
     private long mLastKeyDownEvent = 0L; // timestamp when the last DPAD_CENTER KEY_DOWN occurred
     private Uri mMediaSourceUri = null;
     private String mMediaSourcePath = null;
@@ -218,10 +218,17 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
         // the user keeps the corresponding action pressed.
         // We only consume DPAD_CENTER Action_DOWN events on the Fast-Forward and Rewind action and
         // only if it has not been pressed in the last X milliseconds.
-        boolean consume = mSelectedAction instanceof PlaybackControlsRow.RewindAction;
-        consume = consume || mSelectedAction instanceof PlaybackControlsRow.FastForwardAction;
-        consume = consume && mInitialized;
-        consume = consume && event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER;
+        boolean consume = mInitialized;
+        if (consume && keyCode == KeyEvent.KEYCODE_DPAD_CENTER && event.getAction() == KeyEvent.ACTION_UP){
+            if (isPlaying()){
+                pause();
+            }else {
+                play(1);
+            }
+            return true;
+        }
+        consume = keyCode == KeyEvent.KEYCODE_DPAD_RIGHT;
+        consume = consume || keyCode == KeyEvent.KEYCODE_DPAD_LEFT;
         consume = consume && event.getAction() == KeyEvent.ACTION_DOWN;
         consume = consume && System
                 .currentTimeMillis() - mLastKeyDownEvent > FAST_FORWARD_REWIND_REPEAT_DELAY;
@@ -229,7 +236,7 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
         if (consume) {
             mLastKeyDownEvent = System.currentTimeMillis();
             int newPosition = getCurrentPosition() + FAST_FORWARD_REWIND_STEP;
-            if (mSelectedAction instanceof PlaybackControlsRow.RewindAction) {
+            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 newPosition = getCurrentPosition() - FAST_FORWARD_REWIND_STEP;
             }
             // Make sure the new calculated duration is in the range 0 >= X >= MediaDuration
@@ -300,6 +307,7 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
         if (!mInitialized || mPlayer.isPlaying()) {
             return;
         }
+
         mPlayer.start();
         onMetadataChanged();
         onStateChanged();
@@ -474,11 +482,11 @@ public class MyMediaPlayerGlue extends PlaybackControlGlue implements
     @Override
     public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item,
                                RowPresenter.ViewHolder rowViewHolder, Row row) {
-        if (item instanceof Action) {
-            mSelectedAction = (Action) item;
-        } else {
-            mSelectedAction = null;
-        }
+//        if (item instanceof Action) {
+//            mSelectedAction = (Action) item;
+//        } else {
+//            mSelectedAction = null;
+//        }
     }
 
     @Override
