@@ -104,7 +104,7 @@ public class TestActivity extends BaseActivity implements TestFrameLayout.OnFocu
             return mLLOptions;
         }
 
-        if (mRootView.getFocusedChild() == mScrollView){
+        if (mRootView.getFocusedChild() != mScrollView){
             mLLOptions.setVisibility(View.INVISIBLE);
         }
 
