@@ -57,25 +57,25 @@ public final class MovieList {
                 "Studio Zero", "Studio One", "Studio Two", "Studio Three", "Studio Four"
         };
         String videoUrl[] = {
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose.mp4"
+                "http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=04288188E749E07ED72717AF8243D33F&file=/c1/2018/01/29_0/04288188E749E07ED72717AF8243D33F_20180129_1_1_624.mp4",
+                "http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=04288188E749E07ED72717AF8243D33F&file=/c1/2018/01/29_0/04288188E749E07ED72717AF8243D33F_20180129_1_1_624.mp4",
+                "http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=04288188E749E07ED72717AF8243D33F&file=/c1/2018/01/29_0/04288188E749E07ED72717AF8243D33F_20180129_1_1_624.mp4",
+                "http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=04288188E749E07ED72717AF8243D33F&file=/c1/2018/01/29_0/04288188E749E07ED72717AF8243D33F_20180129_1_1_624.mp4",
+                "http://disp.titan.mgtv.com/vod.do?fmt=4&pno=2010&fid=04288188E749E07ED72717AF8243D33F&file=/c1/2018/01/29_0/04288188E749E07ED72717AF8243D33F_20180129_1_1_624.mp4"
         };
         String bgImageUrl[] = {
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review/bg.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search/bg.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue/bg.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole/bg.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose/bg.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
         };
         String cardImageUrl[] = {
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review/card.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search/card.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue/card.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole/card.jpg",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose/card.jpg"
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg",
+                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1349050144,1294876177&fm=27&gp=0.jpg"
         };
 
         for (int index = 0; index < title.length; ++index) {

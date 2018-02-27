@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wangw.tvbox.test.TestFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+             android:id="@+id/rootview"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"/>
+    </ScrollView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/items"
+        android:layout_marginTop="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/ll_options"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/lb_playback_controls_background_light"
+                android:text="条件1 :"/>
+            <TextView
+                android:id="@+id/tv_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF00FF"
+                android:layout_marginLeft="15dp"
+                android:focusable="true"
+                android:text="最新"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/lb_playback_controls_background_light"
+                android:text="条件2 :"/>
+            <TextView
+                android:id="@+id/tv_hots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF00FF"
+                android:focusable="true"
+                android:layout_marginLeft="15dp"
+                android:text="最热"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.wangw.tvbox.test.TestFrameLayout>
