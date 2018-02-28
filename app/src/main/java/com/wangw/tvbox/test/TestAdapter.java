@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wangw.tvbox.samples.TestFocuseListener;
 import com.wangw.tvbox.utils.ToastUtils;
 
 import java.util.List;

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.activity.BaseActivity;
 import com.wangw.tvbox.test.TestAdapter;
+import com.wangw.tvbox.test.TestFocuseListener;
 import com.wangw.tvbox.test.TestFrameLayout;
 
 import java.util.ArrayList;
