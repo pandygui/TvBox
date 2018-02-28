@@ -2,6 +2,9 @@ package com.wangw.tvbox.activity;
 
 import android.support.v4.app.FragmentActivity;
 
+import com.wangw.tvbox.datasource.Presenter;
+import com.wangw.tvbox.datasource.PresenterView;
+import com.wangw.tvbox.datasource.SafeCallback;
 import com.wangw.tvbox.module.LoadingDialog;
 import com.wangw.tvbox.utils.ToastUtils;
 
@@ -9,9 +12,10 @@ import com.wangw.tvbox.utils.ToastUtils;
  * Created by wangw on 2018/2/24.
  */
 
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity<P extends Presenter> extends FragmentActivity implements SafeCallback,PresenterView<P> {
 
     protected LoadingDialog mLoading;
+    protected P mPresenter;
 
     public void showLoading() {
         showLoading(true);
@@ -19,6 +23,11 @@ public class BaseActivity extends FragmentActivity {
 
     public void showLoading(boolean cancelable) {
         showLoading(cancelable,"");
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        showLoading(true,msg);
     }
 
     public void showLoading(boolean cancelable,String title) {
@@ -33,6 +42,11 @@ public class BaseActivity extends FragmentActivity {
             mLoading.show();
             mLoading.setShowNewLoading();
         }
+    }
+
+    @Override
+    public void setPresenter(P presenter) {
+        mPresenter = presenter;
     }
 
     public void showToast(String text) {
@@ -50,6 +64,7 @@ public class BaseActivity extends FragmentActivity {
             mLoading.dismiss();
     }
 
+    @Override
     public boolean isCancel() {
         return isDestroyed() || isFinishing();
     }

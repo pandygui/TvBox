@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -20,19 +21,19 @@
         android:name=".TvApp"
         android:theme="@style/Theme.Leanback">
 
-        <activity
-            android:name=".activity.WebActivity"
-            android:banner="@drawable/ic_launcher"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            android:logo="@drawable/ic_launcher"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+            <!--android:name=".activity.WebActivity"-->
+            <!--android:banner="@drawable/ic_launcher"-->
+            <!--android:icon="@drawable/ic_launcher"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:logo="@drawable/ic_launcher"-->
+            <!--android:screenOrientation="landscape">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+                <!--<category android:name="android.intent.category.LEANBACK_LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
         <activity android:name=".activity.ParseWebActivity"/>
         <!--<activity-->
@@ -48,6 +49,20 @@
                 <!--<category android:name="android.intent.category.LEANBACK_LAUNCHER"/>-->
             <!--</intent-filter>-->
         <!--</activity>-->
+
+        <activity
+            android:name=".mangguo.MangGuoActivity"
+            android:banner="@drawable/ic_launcher"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:logo="@drawable/ic_launcher"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".samples.DetailsActivity"/>
         <activity android:name=".samples.PlaybackActivity"/>
         <activity android:name=".samples.BrowseErrorActivity"/>

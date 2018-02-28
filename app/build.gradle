@@ -22,5 +22,6 @@ dependencies {
     implementation 'com.android.support:leanback-v17:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'org.xutils:xutils:3.5.0'
     implementation project(':tvmouse')
 }
