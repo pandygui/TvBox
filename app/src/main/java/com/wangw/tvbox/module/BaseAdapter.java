@@ -20,6 +20,11 @@ public abstract class BaseAdapter<V extends RecyclerView.ViewHolder, T> extends 
         notifyDataSetChanged();
     }
 
+    public void setData(List<T> datas,int start,int end){
+        this.dataList = datas;
+        notifyItemRangeChanged(start,end);
+    }
+
     public void clearData() {
         if (dataList != null)
             dataList.clear();

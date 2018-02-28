@@ -26,6 +26,7 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
     private int mPageIndex = 1;
     private Map<String,String> mParams = new HashMap<>();
     private List<MGVideoInfo> mVideos = new ArrayList<>();
+    private int mTotalSize;
 
     public MangGuoPresenter(MangGuoView view) {
         super(view);
@@ -69,15 +70,18 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
     }
 
     private void getVideoList() {
-        showLoading();
-        getDataSource().getVideoList(mChannelInfo.channelId, mPageIndex, mParams, new BaseDataSourceCallback<BaseMGModel<MGVideoList>>(this) {
+//        showLoading();
+        getDataSource().getVideoList(mChannelInfo.getFstlvlId(), mPageIndex, mParams, new BaseDataSourceCallback<BaseMGModel<MGVideoList>>(this) {
             @Override
             public void onSuccess(TvResponse response, BaseMGModel<MGVideoList> o) {
                 if(mPageIndex == 1){
                     mVideos.clear();
                 }
-                mVideos.addAll(o.data.hitDocs);
-                getView().updateVideoList(mVideos);
+                int start = mVideos.size();
+                List<MGVideoInfo> hitDocs = o.data.hitDocs;
+                mVideos.addAll(hitDocs);
+                mTotalSize = o.data.totalHits;
+                getView().updateVideoList(mVideos,start,hitDocs.size());
             }
 
             @Override
@@ -88,6 +92,11 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
         });
     }
 
+    public boolean hasMore(){
+        return mTotalSize <= mVideos.size();
+    }
+
+
 
     private MangguoDataSource getDataSource(){
         return MangguoDataSource.instance;
@@ -97,6 +106,6 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
 
         void initChannelView(List<ChannelInfo> data);
 
-        void updateVideoList(List<MGVideoInfo> videos);
+        void updateVideoList(List<MGVideoInfo> videos,int start,int end);
     }
 }

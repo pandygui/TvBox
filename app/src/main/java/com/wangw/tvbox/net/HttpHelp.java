@@ -3,6 +3,8 @@ package com.wangw.tvbox.net;
 import org.xutils.common.Callback;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * Created by wangw on 2018/2/28.
  */
@@ -41,7 +43,14 @@ public class HttpHelp {
             private TvResponse mResponse = new TvResponse(requestParams);
             @Override
             public void onSuccess(String result) {
-                mResponse.setResult(result);
+                String str;
+                try {
+                     str = new String(result.getBytes(), "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    str = result;
+                }
+                mResponse.setResult(str);
                 callback.onSuccess(mResponse);
             }
 

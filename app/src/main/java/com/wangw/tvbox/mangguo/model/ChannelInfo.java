@@ -58,4 +58,19 @@ public class ChannelInfo {
             }
         }
     }
+
+    public ItemsBeanXX getChannel(){
+        if (items != null && !items.isEmpty()){
+            return items.get(0);
+        }
+        return null;
+    }
+
+    public String getFstlvlId(){
+        if (getChannel() != null){
+            return getChannel().fstlvlId;
+        }
+        return channelId;
+    }
+
 }

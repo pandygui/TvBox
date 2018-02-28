@@ -41,19 +41,38 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
     }
 
     private void initRecyclerView() {
-        mLayoutManager = new GridLayoutManager(this,5);
+        mLayoutManager = new GridLayoutManager(this, 5);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MangGuoAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mAdapter.getItemCount() > 0 && !mPresenter.hasMore()) {
+                    int lastVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    int totalItemCount = mLayoutManager.getItemCount();
+                    if (totalItemCount - 1 == lastVisiblePosition) {
+                        mPresenter.loadMore();
+                    }
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+            }
+        });
     }
 
     @Override
     public void initChannelView(List<ChannelInfo> data) {
         mChannelView.setData(data);
+        mChannelView.requestFocus();
     }
 
     @Override
-    public void updateVideoList(List<MGVideoInfo> videos) {
-        mAdapter.setData(videos);
+    public void updateVideoList(List<MGVideoInfo> videos,int start,int end) {
+        if (start == 0){
+            mAdapter.setData(videos);
+        }else {
+            mAdapter.setData(videos, start, end);
+        }
+//        mRecyclerView.requestFocus();
     }
 }

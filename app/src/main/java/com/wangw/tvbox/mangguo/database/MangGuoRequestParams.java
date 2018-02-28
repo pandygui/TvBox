@@ -25,6 +25,7 @@ public class MangGuoRequestParams extends AbstractRequestParams {
         setHeader("user-agent","Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Mobile Safari/537.36");
         setHeader("accept","*/*");
         setHeader("authority","pianku.api.mgtv.com");
+        setCharset("GB2312");
     }
 
 
