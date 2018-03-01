@@ -47,6 +47,11 @@ public class MGVideoInfo implements IVideoInfo {
         return title;
     }
 
+    @Override
+    public String getThumb() {
+        return img;
+    }
+
     public static class RightCornerBean {
         /**
          * color : #E4B659

@@ -1,6 +1,7 @@
 package com.wangw.tvbox.mangguo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
-import com.wangw.tvbox.utils.ToastUtils;
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class MangGuoChannelView extends RelativeLayout {
         mSearchView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast("搜索");
+                getContext().startActivity(new Intent(getContext(),MangGuoSearchActivity.class));
             }
         });
 

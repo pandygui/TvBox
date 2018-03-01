@@ -8,6 +8,7 @@ import com.wangw.tvbox.mangguo.model.BaseMGModel;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
 import com.wangw.tvbox.mangguo.model.MGVideoInfo;
 import com.wangw.tvbox.mangguo.model.MGVideoList;
+import com.wangw.tvbox.model.IVideoInfo;
 import com.wangw.tvbox.net.TvResponse;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
     private ChannelInfo mChannelInfo;
     private int mPageIndex = 1;
     private Map<String,String> mParams = new HashMap<>();
-    private List<MGVideoInfo> mVideos = new ArrayList<>();
+    private List<IVideoInfo> mVideos = new ArrayList<IVideoInfo>();
     private int mTotalSize;
 
     public MangGuoPresenter(MangGuoView view) {
@@ -106,6 +107,6 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
 
         void initChannelView(List<ChannelInfo> data);
 
-        void updateVideoList(List<MGVideoInfo> videos,int start,int end);
+        void updateVideoList(List<IVideoInfo> videos, int start, int end);
     }
 }

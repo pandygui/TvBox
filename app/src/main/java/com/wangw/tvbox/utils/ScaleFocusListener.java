@@ -55,7 +55,7 @@ public class ScaleFocusListener implements View.OnFocusChangeListener {
     public void onFocusChange(View v, boolean hasFocus) {
         getOrCreateAnimator(v).animateFocus(hasFocus,false);
         if (hasFocus){
-            v.setBackgroundColor(Color.rgb(243,174,75	));
+            v.setBackgroundColor(v.getResources().getColor(R.color.channel_selected));
         }else {
             v.setBackgroundColor(Color.TRANSPARENT);
         }

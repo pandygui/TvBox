@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.wangw.tvbox.R;
 
 /**
  * Created by wangw on 2018/2/28.
@@ -36,7 +37,11 @@ public class ImageLoader {
             return;
         }
         try {
-            Glide.with(iv.getContext()).load(url).dontAnimate().into(iv);
+            Glide.with(iv.getContext()).load(url)
+                    .error(R.drawable.movie)
+                    .placeholder(R.drawable.movie)
+                    .dontAnimate()
+                    .into(iv);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

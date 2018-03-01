@@ -49,4 +49,9 @@ public class MGTeleplayInfo implements IVideoInfo {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public String getThumb() {
+        return image;
+    }
 }

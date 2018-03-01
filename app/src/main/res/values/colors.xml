@@ -30,5 +30,6 @@
     <color name="channel_bg">#FF495975</color>
     <color name="channel_selected">#ff4ba1ff</color>
     <color name="channel_focused">#78ffffff</color>
+    <color name="mask_default_bg">#57B9C1</color>
 
 </resources>

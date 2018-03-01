@@ -11,4 +11,6 @@ public interface IVideoInfo {
 
     String getTitle();
 
+    String getThumb();
+
 }

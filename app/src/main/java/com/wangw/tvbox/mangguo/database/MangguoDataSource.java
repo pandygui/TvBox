@@ -7,6 +7,7 @@ import com.wangw.tvbox.datasource.BaseDataSource;
 import com.wangw.tvbox.datasource.BaseDataSourceCallback;
 import com.wangw.tvbox.mangguo.model.BaseMGModel;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
+import com.wangw.tvbox.mangguo.model.MGSearchList;
 import com.wangw.tvbox.mangguo.model.MGTeleplays;
 import com.wangw.tvbox.mangguo.model.MGVideoList;
 import com.wangw.tvbox.net.AbstractRequestParams;
@@ -68,6 +69,12 @@ public class MangguoDataSource extends BaseDataSource{
         getJson(getServerUrl()+"?abroad=0&needLocate=0&_support=10000000&partId="+partId+"&pageSize="+200+"&pageNum="+pageIndex,
                 callback,
                 new TypeReference<BaseMGModel<MGTeleplays>>(){});
+    }
+
+    public void searchVideo(String key, int pageIndex, BaseDataSourceCallback<MGSearchList> callback){
+        getJson("https://mobileso.bz.mgtv.com/msite/search/v2?pc=60&sort=0&ty=0&du=0&pt=0&corr=1&_support=10000000000000000&q="+key+"&pn="+pageIndex,
+                callback,
+                new TypeReference<MGSearchList>(){});
     }
 
 

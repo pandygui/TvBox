@@ -11,7 +11,7 @@
             android:background="@color/channel_bg"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.wangw.tvbox.module.TvGridView
         android:id="@+id/videos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

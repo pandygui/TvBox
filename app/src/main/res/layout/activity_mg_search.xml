@@ -14,9 +14,22 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
+            android:textColor="#000000"
+            android:padding="5dp"
+            android:hint="搜索"
+            android:textColorHint="@color/tui_text_color_grey"
             android:background="@color/white"/>
 
     </RelativeLayout>
+
+    <com.wangw.tvbox.module.TvGridView
+        android:id="@+id/items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+
 
 
 
