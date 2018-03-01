@@ -20,12 +20,15 @@ public class MangGuoRequestParams extends AbstractRequestParams {
 
     @Override
     protected void setHeader() {
-        setHeader("accept-encoding","gzip, deflate, br");
-        setHeader("accept-language","zh-CN,zh;q=0.9,en;q=0.8");
-        setHeader("user-agent","Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Mobile Safari/537.36");
-        setHeader("accept","*/*");
-        setHeader("authority","pianku.api.mgtv.com");
-        setCharset("GB2312");
+//        setHeader("accept-encoding","gzip, deflate, br");
+//        setHeader("accept-language","zh-CN,zh;q=0.9,en;q=0.8");
+//        setHeader("user-agent","Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Mobile Safari/537.36");
+//        setHeader("accept","*/*");
+//        setHeader("authority","pianku.api.mgtv.com");
+//        setHeader("Content-type","text/html");
+//        setHeader("Accept-Charset","UTF-8");
+//        setHeader("contentType","UTF-8");
+//        setCharset("GB2312");
     }
 
 

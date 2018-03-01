@@ -4,15 +4,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.wangw.tvbox.mangguo.MangGuoChannelView
-        android:id="@+id/channelview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.wangw.tvbox.mangguo.MangGuoChannelView
+            android:id="@+id/channelview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/channel_bg"/>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/videos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
 
 </LinearLayout>

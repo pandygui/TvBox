@@ -6,4 +6,29 @@
     <color name="selected_background">#ffaa3f</color>
     <color name="default_background">#3d3d3d</color>
     <color name="transparent">#00000000</color>
+    <color name="dark_gray">#ff373737</color>
+    <color name="ad_tip_color">#fff1f1f1</color>
+    <color name="common_problem_item_desc_color">#ff999999</color>
+    <color name="service_left_bg_color">#ff090909</color>
+    <color name="msg_sys_right_msg_number_title">#ffe2e3e4</color>
+    <color name="ad_time">#fffcac00</color>
+    <color name="ad_time_bg">#cc000000</color>
+    <color name="red">#ffff0000</color>
+    <color name="white">#ffffffff</color>
+    <color name="red_yellow">#fff5a623</color>
+    <color name="fley_white">#ffc7c7c7</color>
+    <color name="last_msg_nickname_color">#ff737373</color>
+    <color name="fan_white">#ff9b9b9b</color>
+    <color name="tui_text_color_grey">#ff999999</color>
+    <color name="tui_text_color_white">#ffffffff</color>
+    <color name="guard_zero_msg_color">#ffffffff</color>
+    <color name="guard_one_msg_color">#ff72c049</color>
+
+    <color name="guard_three_msg_color">#ffff7f00</color>
+    <color name="send_gift_from">#fff5a623</color>
+
+    <color name="channel_bg">#FF495975</color>
+    <color name="channel_selected">#ff4ba1ff</color>
+    <color name="channel_focused">#78ffffff</color>
+
 </resources>

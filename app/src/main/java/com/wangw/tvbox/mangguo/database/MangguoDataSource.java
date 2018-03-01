@@ -22,6 +22,10 @@ public class MangguoDataSource extends BaseDataSource{
 
     public static MangguoDataSource instance = new MangguoDataSource();
 
+     MangguoDataSource() {
+//         LoaderFactory.registerLoader(BaseMGModel.class,new MangGuoLoader());
+    }
+
     @NonNull
     private String getServerUrl() {
         return "https://pianku.api.mgtv.com/rider/list/msite";

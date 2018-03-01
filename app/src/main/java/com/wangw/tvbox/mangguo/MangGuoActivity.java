@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.activity.BaseActivity;
@@ -22,6 +23,7 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
     private RecyclerView mRecyclerView;
     private GridLayoutManager mLayoutManager;
     private MangGuoAdapter mAdapter;
+    private View mIvSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

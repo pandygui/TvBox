@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
+import com.wangw.tvbox.utils.ToastUtils;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class MangGuoChannelView extends RelativeLayout {
     private LinearLayout mLlChannelList;
     private List<ChannelInfo> mChannelList;
     private ChannelListener mChannelListener;
+    private TextView mSelectedView;
+    private TextView mSearchView;
 
     public MangGuoChannelView(Context context) {
         super(context);
@@ -53,43 +56,73 @@ public class MangGuoChannelView extends RelativeLayout {
     }
 
     private void initChannelListView() {
+        mLlChannelList.removeAllViews();
         for (ChannelInfo channelInfo : mChannelList) {
-            View view = getChannelItemView(channelInfo);
+            TextView view = getChannelItemView();
+            view.setText(channelInfo.channelName);
+            view.setTag(channelInfo);
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setSelectedView((TextView) v);
+                    if (mChannelListener != null){
+                        mChannelListener.setChannel((ChannelInfo) v.getTag());
+                    }
+                }
+            });
+            if (mSelectedView == null){
+                setSelectedView(view);
+            }
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.weight = 1;
             mLlChannelList.addView(view, params);
         }
+
+        this.mSearchView = getChannelItemView();
+        mSearchView.setText("搜索");
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.weight = 1;
+        mLlChannelList.addView(mSearchView, params);
+        mSearchView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showToast("搜索");
+            }
+        });
+
     }
 
-    private View getChannelItemView(ChannelInfo channelInfo){
+    private TextView getChannelItemView(){
         TextView view = new TextView(getContext());
         view.setFocusable(true);
-        view.setText(channelInfo.channelName);
-        view.setTag(channelInfo);
-        view.setPadding(0,60,0,60);
+        view.setPadding(0,30,0,30);
         view.setGravity(Gravity.CENTER);
         view.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus){
-                    v.setBackgroundColor(Color.RED);
+                    v.setBackgroundColor(getResources().getColor(R.color.channel_focused));
                 }else {
                     v.setBackgroundColor(Color.TRANSPARENT);
-                }
-            }
-        });
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setBackgroundColor(Color.RED);
-                if (mChannelListener != null){
-                    mChannelListener.setChannel((ChannelInfo) v.getTag());
                 }
             }
         });
         view.setTextColor(Color.WHITE);
         view.setTextSize(18);
         return view;
+    }
+
+    private void setSelectedView(TextView tv) {
+        if (tv == mSelectedView){
+            return;
+        }
+        if (mSelectedView != null){
+            mSelectedView.getPaint().setFakeBoldText(false);
+            mSelectedView.setTextColor(Color.WHITE);
+        }
+        tv.setTextColor(getResources().getColor(R.color.channel_selected));
+        tv.getPaint().setFakeBoldText(true);
+        mSelectedView = tv;
     }
 
     public ChannelListener getChannelListener() {
