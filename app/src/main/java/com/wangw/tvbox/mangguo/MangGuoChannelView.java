@@ -8,12 +8,19 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
+import com.wangw.tvbox.module.FocusSearchLinearLayout;
+import com.wangw.tvbox.module.FocusSearchListener;
+import com.wangw.tvbox.utils.ToastUtils;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by wangw on 2018/2/28.
@@ -21,11 +28,17 @@ import java.util.List;
 
 public class MangGuoChannelView extends RelativeLayout {
 
-    private LinearLayout mLlChannelList;
+    private static final String TAG = "MangGuoChannelView";
+    @BindView(R.id.ll_parmas)
+    FocusSearchLinearLayout mLlParmas;
+    @BindView(R.id.params)
+    ScrollView mParams;
+    @BindView(R.id.channels)
+    ScrollView mChannels;
+    private FocusSearchLinearLayout mLlChannelList;
     private List<ChannelInfo> mChannelList;
     private ChannelListener mChannelListener;
     private TextView mSelectedView;
-    private TextView mSearchView;
 
     public MangGuoChannelView(Context context) {
         super(context);
@@ -43,13 +56,23 @@ public class MangGuoChannelView extends RelativeLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.view_mangguo_channel,this);
+        inflate(getContext(), R.layout.view_mangguo_channel, this);
+        ButterKnife.bind(this);
         mLlChannelList = findViewById(R.id.ll_channel);
+        mLlChannelList.setListener(new FocusSearchListener() {
+            @Override
+            public View focusSearch(View focused, int direction) {
+                if (mLlChannelList.getChildCount() > 0 && direction == FOCUS_DOWN && mLlChannelList.indexOfChild(focused) == mLlChannelList.getChildCount() - 1)
+                    return mLlChannelList.getChildAt(0);
+                else
+                    return null;
+            }
+        });
     }
 
-    public void setData(List<ChannelInfo> list){
+    public void setData(List<ChannelInfo> list) {
         this.mChannelList = list;
-        if (list == null || list.isEmpty()){
+        if (list == null || list.isEmpty()) {
             mLlChannelList.removeAllViews();
         }
         initChannelListView();
@@ -57,66 +80,69 @@ public class MangGuoChannelView extends RelativeLayout {
 
     private void initChannelListView() {
         mLlChannelList.removeAllViews();
+        addChannelItemView("筛选").setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                mParams.setVisibility(VISIBLE);
+//                mChannels.setVisibility(GONE);
+                ToastUtils.showToast("正在努力开发中。。。");
+
+            }
+        });
+        addChannelItemView("搜索").setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContext().startActivity(new Intent(getContext(), MangGuoSearchActivity.class));
+            }
+        });
         for (ChannelInfo channelInfo : mChannelList) {
-            TextView view = getChannelItemView();
-            view.setText(channelInfo.channelName);
+            TextView view = addChannelItemView(channelInfo.channelName);
             view.setTag(channelInfo);
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     setSelectedView((TextView) v);
-                    if (mChannelListener != null){
+                    if (mChannelListener != null) {
                         mChannelListener.setChannel((ChannelInfo) v.getTag());
                     }
                 }
             });
-            if (mSelectedView == null){
+            if (mSelectedView == null) {
                 setSelectedView(view);
             }
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.weight = 1;
-            mLlChannelList.addView(view, params);
         }
 
-        this.mSearchView = getChannelItemView();
-        mSearchView.setText("搜索");
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.weight = 1;
-        mLlChannelList.addView(mSearchView, params);
-        mSearchView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getContext().startActivity(new Intent(getContext(),MangGuoSearchActivity.class));
-            }
-        });
 
     }
 
-    private TextView getChannelItemView(){
+    private TextView addChannelItemView(String title) {
         TextView view = new TextView(getContext());
         view.setFocusable(true);
-        view.setPadding(0,30,0,30);
+        view.setText(title);
+        view.setPadding(0, 20, 0, 20);
         view.setGravity(Gravity.CENTER);
         view.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
+                if (hasFocus) {
                     v.setBackgroundColor(getResources().getColor(R.color.channel_focused));
-                }else {
+                } else {
                     v.setBackgroundColor(Color.TRANSPARENT);
                 }
             }
         });
         view.setTextColor(Color.WHITE);
         view.setTextSize(18);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mLlChannelList.addView(view, params);
         return view;
     }
 
     private void setSelectedView(TextView tv) {
-        if (tv == mSelectedView){
+        if (tv == mSelectedView) {
             return;
         }
-        if (mSelectedView != null){
+        if (mSelectedView != null) {
             mSelectedView.getPaint().setFakeBoldText(false);
             mSelectedView.setTextColor(Color.WHITE);
         }
@@ -133,7 +159,7 @@ public class MangGuoChannelView extends RelativeLayout {
         mChannelListener = channelListener;
     }
 
-    public interface ChannelListener{
+    public interface ChannelListener {
         void setChannel(ChannelInfo info);
     }
 

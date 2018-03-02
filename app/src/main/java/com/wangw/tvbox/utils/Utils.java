@@ -39,4 +39,22 @@ public class Utils {
         return "18"+month+ day;
     }
 
+    /**
+     * @param context
+     * @param px
+     * @return
+     */
+    public static float px2dp(final Context context, final float px) {
+        return px / context.getResources().getDisplayMetrics().density;
+    }
+
+    /**
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static float dp2px(final Context context, final float dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
+    }
+
 }

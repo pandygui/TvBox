@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    >
 
-        <com.wangw.tvbox.mangguo.MangGuoChannelView
-            android:id="@+id/channelview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/channel_bg"/>
+    <com.wangw.tvbox.mangguo.MangGuoChannelView
+        android:id="@+id/channelview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_bg"/>
 
 
     <com.wangw.tvbox.module.TvGridView
         android:id="@+id/videos"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"/>
+        android:layout_margin="10dp"/>
 
 
 </LinearLayout>
