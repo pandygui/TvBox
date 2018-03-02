@@ -8,7 +8,7 @@ import android.support.v17.leanback.media.MediaPlayerGlue;
 import android.support.v17.leanback.media.PlaybackGlue;
 import android.util.Log;
 
-import com.wangw.tvbox.module.MyMediaPlayerGlue;
+import com.wangw.tvbox.module.view.MyMediaPlayerGlue;
 import com.wangw.tvbox.utils.ToastUtils;
 
 import java.io.UnsupportedEncodingException;

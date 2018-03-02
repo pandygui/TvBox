@@ -1,4 +1,4 @@
-package com.wangw.tvbox.utils;
+package com.wangw.tvbox.module;
 
 import android.animation.TimeAnimator;
 import android.support.v17.leanback.graphics.ColorOverlayDimmer;

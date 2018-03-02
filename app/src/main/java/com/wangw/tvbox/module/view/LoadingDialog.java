@@ -1,4 +1,4 @@
-package com.wangw.tvbox.module;
+package com.wangw.tvbox.module.view;
 
 import android.app.Dialog;
 import android.content.Context;

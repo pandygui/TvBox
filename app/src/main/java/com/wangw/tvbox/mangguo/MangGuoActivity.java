@@ -2,12 +2,14 @@ package com.wangw.tvbox.mangguo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.activity.BaseActivity;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
 import com.wangw.tvbox.model.IVideoInfo;
-import com.wangw.tvbox.module.TvGridView;
+import com.wangw.tvbox.module.HeaderRecyclerViewAdapter;
+import com.wangw.tvbox.module.view.TvGridView;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
     private MangGuoChannelView mChannelView;
     private TvGridView mRecyclerView;
     private MangGuoAdapter mAdapter;
+    private MangGuoFilterView mFilterView;
+    private HeaderRecyclerViewAdapter mHeaderViewAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +34,12 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
             @Override
             public void setChannel(ChannelInfo info) {
                 mPresenter.setChannelInfo(info);
+//                mFilterView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onClickFilterView() {
+//                mFilterView.setVisibility(View.VISIBLE);
             }
         });
         mRecyclerView = findViewById(R.id.videos);
@@ -40,7 +50,8 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
 
     private void initRecyclerView() {
         mAdapter = new MangGuoAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        mHeaderViewAdapter = new HeaderRecyclerViewAdapter(mAdapter);
+        mRecyclerView.setAdapter(mHeaderViewAdapter);
         mRecyclerView.setListener(new TvGridView.TvGridViewListener() {
             @Override
             public void onLoadMore() {
@@ -52,12 +63,31 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
                 return mPresenter.hasMore();
             }
         });
+        if(mRecyclerView.getLayoutManager() instanceof GridLayoutManager){
+            ((GridLayoutManager)mRecyclerView.getLayoutManager()).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (HeaderRecyclerViewAdapter.isHeaderView(mHeaderViewAdapter.getItemViewType(position)))
+                        return mRecyclerView.getSpanCount();
+                    else
+                        return 1;
+                }
+            });
+        }
+        mFilterView = new MangGuoFilterView(this);
+        mFilterView.setListener(new MangGuoFilterView.MGFilterListener(){
+            @Override
+            public void setFilter(ChannelInfo.ItemsBeanXX.ItemsBeanX item, ChannelInfo.ItemsBeanXX.ItemsBeanX.ItemsBean bean) {
+                mPresenter.updateVideoList(item,bean);
+            }
+        });
+        mHeaderViewAdapter.addHeader(mFilterView);
     }
 
     @Override
     public void initChannelView(List<ChannelInfo> data) {
         mChannelView.setData(data);
-        mChannelView.requestFocus();
+        mChannelView.requestFocusInit();
     }
 
     @Override
@@ -67,5 +97,12 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
         }else {
             mAdapter.setData(videos, start, end);
         }
+        mFilterView.requestFocus();
+    }
+
+    @Override
+    public void updateFilterView(ChannelInfo.ItemsBeanXX itemsBeanXX) {
+        mFilterView.setData(itemsBeanXX.items);
     }
 }
+

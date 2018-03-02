@@ -14,7 +14,7 @@ import com.wangw.tvbox.mangguo.database.MangguoDataSource;
 import com.wangw.tvbox.mangguo.model.MGSearchInfo;
 import com.wangw.tvbox.mangguo.model.MGSearchList;
 import com.wangw.tvbox.model.IVideoInfo;
-import com.wangw.tvbox.module.TvGridView;
+import com.wangw.tvbox.module.view.TvGridView;
 import com.wangw.tvbox.net.TvResponse;
 
 import java.util.ArrayList;

@@ -1,10 +1,12 @@
-package com.wangw.tvbox.module;
+package com.wangw.tvbox.module.view;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.wangw.tvbox.module.FocusSearchListener;
 
 /**
  * Created by wangw on 2018/3/2.

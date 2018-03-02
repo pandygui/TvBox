@@ -1,4 +1,4 @@
-package com.wangw.tvbox.module;
+package com.wangw.tvbox.module.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

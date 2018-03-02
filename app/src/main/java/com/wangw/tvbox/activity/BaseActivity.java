@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import com.wangw.tvbox.datasource.Presenter;
 import com.wangw.tvbox.datasource.PresenterView;
 import com.wangw.tvbox.datasource.SafeCallback;
-import com.wangw.tvbox.module.LoadingDialog;
+import com.wangw.tvbox.module.view.LoadingDialog;
 import com.wangw.tvbox.utils.ToastUtils;
 
 /**

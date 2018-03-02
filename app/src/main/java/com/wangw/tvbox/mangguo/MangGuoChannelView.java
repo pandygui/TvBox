@@ -8,18 +8,15 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wangw.tvbox.R;
 import com.wangw.tvbox.mangguo.model.ChannelInfo;
-import com.wangw.tvbox.module.FocusSearchLinearLayout;
 import com.wangw.tvbox.module.FocusSearchListener;
-import com.wangw.tvbox.utils.ToastUtils;
+import com.wangw.tvbox.module.view.FocusSearchLinearLayout;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -29,16 +26,11 @@ import butterknife.ButterKnife;
 public class MangGuoChannelView extends RelativeLayout {
 
     private static final String TAG = "MangGuoChannelView";
-    @BindView(R.id.ll_parmas)
-    FocusSearchLinearLayout mLlParmas;
-    @BindView(R.id.params)
-    ScrollView mParams;
-    @BindView(R.id.channels)
-    ScrollView mChannels;
     private FocusSearchLinearLayout mLlChannelList;
     private List<ChannelInfo> mChannelList;
     private ChannelListener mChannelListener;
     private TextView mSelectedView;
+//    private TextView mFilterView;
 
     public MangGuoChannelView(Context context) {
         super(context);
@@ -80,15 +72,17 @@ public class MangGuoChannelView extends RelativeLayout {
 
     private void initChannelListView() {
         mLlChannelList.removeAllViews();
-        addChannelItemView("筛选").setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                mParams.setVisibility(VISIBLE);
-//                mChannels.setVisibility(GONE);
-                ToastUtils.showToast("正在努力开发中。。。");
-
-            }
-        });
+//        this.mFilterView = addChannelItemView("筛选");
+//        mFilterView.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mChannelListener != null){
+//                    mChannelListener.onClickFilterView();
+//                }
+//            setSelectedState(mFilterView,true);
+//
+//            }
+//        });
         addChannelItemView("搜索").setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +96,7 @@ public class MangGuoChannelView extends RelativeLayout {
                 @Override
                 public void onClick(View v) {
                     setSelectedView((TextView) v);
+//                    setSelectedState(mFilterView,false);
                     if (mChannelListener != null) {
                         mChannelListener.setChannel((ChannelInfo) v.getTag());
                     }
@@ -132,7 +127,7 @@ public class MangGuoChannelView extends RelativeLayout {
             }
         });
         view.setTextColor(Color.WHITE);
-        view.setTextSize(18);
+        view.setTextSize(24);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         mLlChannelList.addView(view, params);
         return view;
@@ -143,13 +138,22 @@ public class MangGuoChannelView extends RelativeLayout {
             return;
         }
         if (mSelectedView != null) {
-            mSelectedView.getPaint().setFakeBoldText(false);
-            mSelectedView.setTextColor(Color.WHITE);
+            setSelectedState(mSelectedView,false);
         }
-        tv.setTextColor(getResources().getColor(R.color.channel_selected));
-        tv.getPaint().setFakeBoldText(true);
+        setSelectedState(tv,true);
         mSelectedView = tv;
     }
+
+    private void setSelectedState(TextView tv,boolean isSelected) {
+        if (isSelected) {
+            tv.setTextColor(getResources().getColor(R.color.channel_selected));
+            tv.getPaint().setFakeBoldText(true);
+        }else {
+            tv.getPaint().setFakeBoldText(false);
+            tv.setTextColor(Color.WHITE);
+        }
+    }
+
 
     public ChannelListener getChannelListener() {
         return mChannelListener;
@@ -159,8 +163,16 @@ public class MangGuoChannelView extends RelativeLayout {
         mChannelListener = channelListener;
     }
 
+    public void requestFocusInit() {
+        if (mSelectedView != null){
+            mSelectedView.requestFocus();
+        }
+    }
+
     public interface ChannelListener {
         void setChannel(ChannelInfo info);
+
+        void onClickFilterView();
     }
 
 }

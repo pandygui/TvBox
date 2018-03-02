@@ -8,24 +8,10 @@
         android:id="@+id/channels"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-        <com.wangw.tvbox.module.FocusSearchLinearLayout
+        <com.wangw.tvbox.module.view.FocusSearchLinearLayout
             android:id="@+id/ll_channel"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"/>
-    </ScrollView>
-
-    <ScrollView
-        android:id="@+id/params"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-        <com.wangw.tvbox.module.FocusSearchLinearLayout
-            android:id="@+id/ll_parmas"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
             android:orientation="vertical"/>
     </ScrollView>
 

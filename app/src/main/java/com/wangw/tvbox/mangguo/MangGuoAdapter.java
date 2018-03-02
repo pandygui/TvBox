@@ -83,5 +83,15 @@ public class MangGuoAdapter extends TvAdapter<MangGuoAdapter.MangGuoVideoViewHol
         public void onClick(View v) {
             ParseWebActivity.jumpTo(v.getContext(), mData.getVideoPageUrl());
         }
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            super.onFocusChange(v, hasFocus);
+            if (hasFocus){
+                mTvSubTitle.setVisibility(View.VISIBLE);
+            }else {
+                mTvSubTitle.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }

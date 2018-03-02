@@ -1,10 +1,12 @@
-package com.wangw.tvbox.module;
+package com.wangw.tvbox.module.view;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+
+import com.wangw.tvbox.module.TVItemDecoration;
 
 /**
  * Created by wangw on 2018/3/1.
@@ -31,9 +33,9 @@ public class TvGridView extends RecyclerView {
     }
 
     private void onInitView() {
-        mLayoutManager = new GridLayoutManager(getContext(), 5);
+        mLayoutManager = new GridLayoutManager(getContext(), getSpanCount());
         setLayoutManager(mLayoutManager);
-        addItemDecoration(new TVItemDecoration(5,20,20));
+        addItemDecoration(new TVItemDecoration(getSpanCount(),30,true));
         addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -52,6 +54,11 @@ public class TvGridView extends RecyclerView {
             }
         });
     }
+
+    public int getSpanCount(){
+        return 5;
+    }
+
 
     public TvGridViewListener getListener() {
         return mListener;

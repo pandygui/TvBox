@@ -58,11 +58,15 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
         mPageIndex = 1;
         mParams.clear();
         getVideoList();
+        if (channelInfo.items != null && !channelInfo.items.isEmpty()) {
+            getView().updateFilterView(channelInfo.items.get(0));
+        }
     }
 
     public void updateVideoList(ChannelInfo.ItemsBeanXX.ItemsBeanX key, ChannelInfo.ItemsBeanXX.ItemsBeanX.ItemsBean value){
         mParams.put(key.eName,value.tagId);
         mPageIndex = 1;
+        getVideoList();
     }
 
     public void loadMore(){
@@ -108,5 +112,7 @@ public class MangGuoPresenter extends AbstractPresenter<MangGuoPresenter.MangGuo
         void initChannelView(List<ChannelInfo> data);
 
         void updateVideoList(List<IVideoInfo> videos, int start, int end);
+
+        void updateFilterView(ChannelInfo.ItemsBeanXX itemsBeanXX);
     }
 }

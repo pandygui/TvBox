@@ -1,7 +1,6 @@
-package com.wangw.tvbox.utils;
+package com.wangw.tvbox.module;
 
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.view.View;
 
 import com.wangw.tvbox.R;
@@ -41,6 +40,14 @@ public class ScaleFocusListener implements View.OnFocusChangeListener {
     private int mScaleIndex;
     private final boolean mUseDimmer;
 
+    private View.OnFocusChangeListener mFocusChangeListener;
+
+    public ScaleFocusListener(int scaleIndex, boolean useDimmer, View.OnFocusChangeListener focusChangeListener) {
+        mScaleIndex = scaleIndex;
+        mUseDimmer = useDimmer;
+        mFocusChangeListener = focusChangeListener;
+    }
+
     public ScaleFocusListener(int scaleIndex, boolean useDimmer) {
         mScaleIndex = scaleIndex;
         mUseDimmer = useDimmer;
@@ -53,12 +60,10 @@ public class ScaleFocusListener implements View.OnFocusChangeListener {
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        getOrCreateAnimator(v).animateFocus(hasFocus,false);
-        if (hasFocus){
-            v.setBackgroundColor(v.getResources().getColor(R.color.channel_selected));
-        }else {
-            v.setBackgroundColor(Color.TRANSPARENT);
+        if (mFocusChangeListener != null){
+            mFocusChangeListener.onFocusChange(v,hasFocus);
         }
+        getOrCreateAnimator(v).animateFocus(hasFocus,false);
     }
 
     private FocusAnimator getOrCreateAnimator(View view) {

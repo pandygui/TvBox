@@ -14,11 +14,10 @@
     <color name="service_left_bg_color">#ff090909</color>
     <color name="msg_sys_right_msg_number_title">#ffe2e3e4</color>
     <color name="ad_time">#fffcac00</color>
-    <color name="ad_time_bg">#cc000000</color>
+    <color name="ad_time_bg">#80000000</color>
     <color name="red">#ffff0000</color>
     <color name="white">#ffffffff</color>
-    <color name="red_yellow">#fff5a623</color>
-    <color name="fley_white">#ffc7c7c7</color>
+    <color name="red_yellow"></color>
     <color name="last_msg_nickname_color">#ff737373</color>
     <color name="fan_white">#ff9b9b9b</color>
     <color name="tui_text_color_grey">#ff999999</color>
@@ -30,8 +29,8 @@
     <color name="send_gift_from">#fff5a623</color>
 
     <color name="channel_bg">#FF495975</color>
-    <color name="channel_selected">#ff4ba1ff</color>
-    <color name="channel_focused">#78ffffff</color>
+    <color name="channel_selected">#ea651e</color>
+    <color name="channel_focused">#64ffffff</color>
     <color name="mask_default_bg">#57B9C1</color>
 
 </resources>
