@@ -15,7 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wangw.tvbox.TvApp;
-import com.wangw.tvbox.fragment.VideoPlayerFrag;
+import com.wangw.tvbox.samples.IJKPlayerFrag;
 
 /**
  * Created by wangw on 2018/2/24.
@@ -133,7 +133,8 @@ public class ParseWebActivity extends BaseActivity {
             return;
         if (mDialog != null && mDialog.isShowing())
             mDialog.dismiss();
-        VideoPlayerFrag fragment = VideoPlayerFrag.newInstance(url);
+//        VideoPlayerFrag fragment = VideoPlayerFrag.newInstance(url);
+        IJKPlayerFrag fragment = IJKPlayerFrag.newInstance(url);
         getSupportFragmentManager().beginTransaction()
                 .replace(android.R.id.content, fragment)
                 .commit();

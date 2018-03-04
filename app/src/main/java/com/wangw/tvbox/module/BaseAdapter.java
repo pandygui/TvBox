@@ -13,21 +13,23 @@ import java.util.List;
  * @param <T> 数据模型
  */
 public abstract class BaseAdapter<V extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<V> {
-    protected List<T> dataList;
+    protected List<T> mDataList = new ArrayList<>();
 
     public void setData(List<T> dataList) {
-        this.dataList = dataList;
-        notifyDataSetChanged();
+        this.mDataList.clear();
+        mDataList.addAll(dataList);
+        notifyItemRangeChanged(0,dataList.size());
+//        notifyDataSetChanged();
     }
 
     public void setData(List<T> datas,int start,int end){
-        this.dataList = datas;
+        this.mDataList = datas;
         notifyItemRangeChanged(start,end);
     }
 
     public void clearData() {
-        if (dataList != null)
-            dataList.clear();
+        if (mDataList != null)
+            mDataList.clear();
         notifyDataSetChanged();
     }
 
@@ -36,32 +38,32 @@ public abstract class BaseAdapter<V extends RecyclerView.ViewHolder, T> extends 
     }
 
     public void appendData(T data) {
-        if (dataList == null) {
-            dataList = new ArrayList<>();
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
         }
-        dataList.add(data);
+        mDataList.add(data);
         notifyDataSetChanged();
     }
 
     public void appendData(List<T> appendList) {
-        if (dataList == null) {
-            dataList = new ArrayList<>();
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
         }
-        this.dataList.addAll(appendList);
+        this.mDataList.addAll(appendList);
         notifyDataSetChanged();
     }
 
     public void appendData(int position, List<T> appendList) {
-        if (dataList == null) {
-            dataList = new ArrayList<>();
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
         }
-        this.dataList.addAll(position, appendList);
+        this.mDataList.addAll(position, appendList);
         notifyDataSetChanged();
     }
 
     public T getData(int position) {
         try {
-            return dataList.get(position);
+            return mDataList.get(position);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -69,33 +71,33 @@ public abstract class BaseAdapter<V extends RecyclerView.ViewHolder, T> extends 
     }
 
     public List<T> getDataList() {
-        return dataList;
+        return mDataList;
     }
 
     @Override
     public int getItemCount() {
-        if (dataList == null) {
+        if (mDataList == null) {
             return 0;
         }
-        return dataList.size();
+        return mDataList.size();
     }
 
     @Override
     public long getItemId(int position) {
-        if (dataList == null) {
+        if (mDataList == null) {
             return 0;
         }
         return position;
     }
 
     public void appendData(List<T> appendList, boolean isRefresh) {
-        if (dataList == null) {
-            dataList = new ArrayList<>();
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
         }
         if(isRefresh){
-            dataList.clear();
+            mDataList.clear();
         }
-        this.dataList.addAll(appendList);
+        this.mDataList.addAll(appendList);
         notifyDataSetChanged();
     }
 

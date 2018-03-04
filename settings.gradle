@@ -1,1 +1,1 @@
-include ':app', ':tvmouse'
+include ':app', ':tvmouse', ':gsyVideoPlayer'

@@ -92,11 +92,11 @@ public class MangGuoActivity extends BaseActivity<MangGuoPresenter> implements M
 
     @Override
     public void updateVideoList(List<IVideoInfo> videos, int start, int end) {
-        if (start == 0){
-            mAdapter.setData(videos);
-        }else {
+//        if (start == 0){
+//            mAdapter.setData(videos);
+//        }else {
             mAdapter.setData(videos, start, end);
-        }
+//        }
         mFilterView.requestFocus();
     }
 

@@ -25,6 +25,7 @@ public abstract class TvAdapter<V extends TvViewHolder,T> extends BaseAdapter<V,
                 .keepForegroundDrawable(true)
                 .options(ShadowOverlayHelper.Options.DEFAULT)
                 .build(TvApp.getAppContext());
+        setHasStableIds(true);
     }
 
     @Override

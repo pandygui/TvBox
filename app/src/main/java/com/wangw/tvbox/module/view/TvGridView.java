@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
 
 import com.wangw.tvbox.module.TVItemDecoration;
 
@@ -14,6 +16,7 @@ import com.wangw.tvbox.module.TVItemDecoration;
 
 public class TvGridView extends RecyclerView {
 
+    private static final String TAG = "TvGridView";
     private GridLayoutManager mLayoutManager;
     private TvGridViewListener mListener;
 
@@ -33,7 +36,7 @@ public class TvGridView extends RecyclerView {
     }
 
     private void onInitView() {
-        mLayoutManager = new GridLayoutManager(getContext(), getSpanCount());
+        mLayoutManager = new FocusGridLayoutManager(getContext(),this, getSpanCount());
         setLayoutManager(mLayoutManager);
         addItemDecoration(new TVItemDecoration(getSpanCount(),30,true));
         addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -53,12 +56,24 @@ public class TvGridView extends RecyclerView {
                 super.onScrollStateChanged(recyclerView,newState);
             }
         });
+        setItemAnimator(null);
     }
 
     public int getSpanCount(){
         return 5;
     }
 
+    @Override
+    public void requestChildFocus(View child, View focused) {
+        Log.d(TAG, "requestChildFocus: child="+child+" , focused"+focused);
+        super.requestChildFocus(child, focused);
+    }
+
+    @Override
+    public View focusSearch(View focused, int direction) {
+        Log.d(TAG, "focusSearch: focused="+focused+" , direction="+direction);
+        return super.focusSearch(focused, direction);
+    }
 
     public TvGridViewListener getListener() {
         return mListener;
